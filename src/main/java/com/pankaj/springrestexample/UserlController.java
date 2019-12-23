@@ -10,7 +10,7 @@ import com.pankaj.springrestexample.model.User;
 import com.pankaj.springrestexample.service.UserDaoService;
 
 @RestController
-public class HelloWordlController {
+public class UserlController {
 	
 	@Autowired
 	UserDaoService userService;

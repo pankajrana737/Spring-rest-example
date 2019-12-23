@@ -31,5 +31,14 @@ public class UserDaoService {
 public List<User> reteriveAllUsers(){
 	return users;
 }
+ public User save(User user) {
+	 if(user.getId()==null) {
+		 user.setId(++userId);
+		 users.add(user);
+	 }
+	 
+	return user;
+	 
+ }
 	
 }
