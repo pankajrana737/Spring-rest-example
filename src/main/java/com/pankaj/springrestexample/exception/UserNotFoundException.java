@@ -1,4 +1,4 @@
-package com.pankaj.springrestexample;
+package com.pankaj.springrestexample.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
