@@ -34,10 +34,20 @@ public List<User> reteriveAllUsers(){
  public User save(User user) {
 	 if(user.getId()==null) {
 		 user.setId(++userId);
-		 users.add(user);
+		 
 	 }
-	 
+	 users.add(user);
 	return user;
+	 
+ }
+ 
+ public User findUser(int id) {
+	 for(User user :users) {
+		 if(user.getId()==id) {
+			 return user;
+		 }
+	 }
+	return null;
 	 
  }
 	
