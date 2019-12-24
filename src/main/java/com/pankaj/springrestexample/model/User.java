@@ -7,13 +7,22 @@ import javax.validation.Valid;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
+import org.springframework.context.annotation.Primary;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
+@ApiModel(description = "USer class stroe datils about user ")
+@ApiOperation(value = "get-users")
 public class User {
 
 private Integer id;
 @Size(min=2)
+@ApiModelProperty(notes = "username must have 2 charcaters ")
 private String name;
 @Past
 private Date birthDate;
+@ApiModelProperty(notes = "birth day can be in past date")
 private List<Post> posts;
 public List<Post> getPosts() {
 	return posts;
