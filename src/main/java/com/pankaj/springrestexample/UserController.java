@@ -22,7 +22,7 @@ import com.pankaj.springrestexample.model.User;
 import com.pankaj.springrestexample.service.UserDaoService;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 @RestController
-public class UserlController {
+public class UserController {
 	
 	@Autowired
 	UserDaoService userService;
