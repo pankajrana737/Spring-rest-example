@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
 
 public class Post {
 private Date postingDate;
-@Size(min = 2)
+
 private String tittle;
 private String psotMessgae;
 public Date getPostingDate() {
