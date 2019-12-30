@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.pankaj.springrestexample.model.SampleBean;
+import com.pankaj.springrestexample.utility.FilterBeanFileds;
 
 
 @RestController
@@ -39,19 +40,9 @@ public class SampleFilterController {
 		data.add(new SampleBean("filed31", "filed26", "filed34", "filed44", "filed5"));
 		data.add(new SampleBean("filed41", "filed25", "filed31", "filed46", "filed5"));
 		data.add(new SampleBean("filed41", "filed25", "filed32", "filed48", "filed5"));
-		
-		
+			
 	
-		
-		SimpleBeanPropertyFilter filter=
-				  SimpleBeanPropertyFilter.filterOutAllExcept("filed1","filed4");
-				  FilterProvider filterFewItem= new
-				  SimpleFilterProvider().addFilter("myFilterName",filter); 
-				  
-				  MappingJacksonValue mapping= new		 MappingJacksonValue(data);
-				  mapping.setFilters(filterFewItem);
-		
-				return mapping;
+		return		  FilterBeanFileds.filterData(data,"myFilterName","filed2","filed1","filed5");
 		
 		
 		
@@ -61,20 +52,15 @@ public class SampleFilterController {
 	@GetMapping("/filtering1")
 	public MappingJacksonValue getFilteredData(){
 		SampleBean sampleBean = new SampleBean("filed1", "filed2", "filed3", "filed4", "filed5");
+		List<SampleBean> data= new ArrayList<>();
+		data.add(sampleBean);
 		
-		
-		SimpleBeanPropertyFilter filter=
-				  SimpleBeanPropertyFilter.filterOutAllExcept("filed1","filed3","filed4");
-				  FilterProvider filterFewItem= new
-				  SimpleFilterProvider().addFilter("myFilterName",filter); 
 				  
-				  MappingJacksonValue mapping= new		 MappingJacksonValue(sampleBean);
-				  mapping.setFilters(filterFewItem);
-		
-				return mapping;
-		
+		return		  FilterBeanFileds.filterData(data,"myFilterName","filed1","filed3","filed4");
 		
 		
 	}
+
+	
 
 }
