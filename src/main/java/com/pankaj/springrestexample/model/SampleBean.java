@@ -1,11 +1,14 @@
 package com.pankaj.springrestexample.model;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 // used in samplefilter controller
 // json filter is argument of simpleFilterprovider constructor
-@JsonFilter("myFilterName")
+@JsonFilter(value="myFilterName")
+
+
 public class SampleBean {
 	
 	private String filed1;
@@ -22,6 +25,11 @@ public class SampleBean {
 		this.filed3 = filed3;
 		this.filed4 = filed4;
 		this.filed5 = filed5;
+	}
+	@Override
+	public String toString() {
+		return "SampleBean [filed1=" + filed1 + ", filed2=" + filed2 + ", filed3=" + filed3 + ", filed4=" + filed4
+				+ ", filed5=" + filed5 + "]";
 	}
 	public String getFiled1() {
 		return filed1;

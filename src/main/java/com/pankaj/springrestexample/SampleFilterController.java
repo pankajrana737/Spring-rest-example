@@ -1,6 +1,7 @@
 package com.pankaj.springrestexample;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.http.converter.json.MappingJacksonValue;
@@ -30,32 +31,27 @@ public class SampleFilterController {
 	// send fild1 and filed 4 only
 	
 	@GetMapping("/listfiltering1")
-	public List< MappingJacksonValue> getFilteredDataList(){
+	public  MappingJacksonValue getFilteredDataList(){
 		List<SampleBean> data= new ArrayList<SampleBean>();
 		
-		List<MappingJacksonValue> resultdata= new ArrayList<MappingJacksonValue>();
 		data.add(new SampleBean("filed1", "filed2", "filed3", "filed41", "filed5"));
-		data.add(new SampleBean("filed21", "filed2", "filed3", "filed42", "filed5"));
-		data.add(new SampleBean("filed31", "filed26", "filed3", "filed44", "filed5"));
-		data.add(new SampleBean("filed41", "filed25", "filed3", "filed46", "filed5"));
-		data.add(new SampleBean("filed41", "filed25", "filed3", "filed48", "filed5"));
+		data.add(new SampleBean("filed21", "filed2", "filed352", "filed42", "filed5"));
+		data.add(new SampleBean("filed31", "filed26", "filed34", "filed44", "filed5"));
+		data.add(new SampleBean("filed41", "filed25", "filed31", "filed46", "filed5"));
+		data.add(new SampleBean("filed41", "filed25", "filed32", "filed48", "filed5"));
 		
-		  SimpleBeanPropertyFilter filter=
+		
+	
+		
+		SimpleBeanPropertyFilter filter=
 				  SimpleBeanPropertyFilter.filterOutAllExcept("filed1","filed4");
-		
-		  FilterProvider filterFewItem= new
+				  FilterProvider filterFewItem= new
 				  SimpleFilterProvider().addFilter("myFilterName",filter); 
-				  for(SampleBean myBean: data) {
-					
-							
-							  MappingJacksonValue mapping;
-					mapping= new MappingJacksonValue(myBean);
-					mapping.setFilters(filterFewItem);
-					  resultdata.add(mapping);				
-					  }
-				 
+				  
+				  MappingJacksonValue mapping= new		 MappingJacksonValue(data);
+				  mapping.setFilters(filterFewItem);
 		
-				return resultdata;
+				return mapping;
 		
 		
 		
@@ -68,7 +64,7 @@ public class SampleFilterController {
 		
 		
 		SimpleBeanPropertyFilter filter=
-				  SimpleBeanPropertyFilter.filterOutAllExcept("filed1","filed4");
+				  SimpleBeanPropertyFilter.filterOutAllExcept("filed1","filed3","filed4");
 				  FilterProvider filterFewItem= new
 				  SimpleFilterProvider().addFilter("myFilterName",filter); 
 				  
