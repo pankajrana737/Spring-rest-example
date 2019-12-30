@@ -30,7 +30,11 @@
             <dependency>
            <groupId>com.jayway.jsonpath</groupId>
     		<artifactId>json-path</artifactId>
-   
+   <!--add basic security  -->
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 	<!-- apchec ioutils -->
 	<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
