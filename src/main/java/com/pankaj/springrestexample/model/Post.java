@@ -2,8 +2,10 @@ package com.pankaj.springrestexample.model;
 
 import java.util.Date;
 
+import javax.persistence.Embeddable;
 import javax.validation.constraints.Size;
 
+@Embeddable
 public class Post {
 private Date postingDate;
 
@@ -32,6 +34,10 @@ public Post(Date postingDate, String tittle, String psotMessgae) {
 	this.postingDate = postingDate;
 	this.tittle = tittle;
 	this.psotMessgae = psotMessgae;
+}
+public Post() {
+	super();
+	// TODO Auto-generated constructor stub
 }
 
 

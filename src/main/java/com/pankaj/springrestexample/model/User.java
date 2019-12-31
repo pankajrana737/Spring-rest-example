@@ -3,6 +3,10 @@ package com.pankaj.springrestexample.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.Valid;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
@@ -14,8 +18,11 @@ import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 @ApiModel(description = "USer class stroe datils about user ")
 @ApiOperation(value = "get-users")
+@Entity
 public class User {
 
+	@Id
+	@GeneratedValue
 private Integer id;
 @Size(min=2)
 @ApiModelProperty(notes = "username must have 2 charcaters ")
@@ -23,6 +30,8 @@ private String name;
 @Past
 private Date birthDate;
 @ApiModelProperty(notes = "birth day can be in past date")
+
+@Embedded
 private List<Post> posts;
 public List<Post> getPosts() {
 	return posts;
@@ -54,6 +63,10 @@ public User(Integer id, String name, Date birthDate, List<Post> posts) {
 	this.name = name;
 	this.birthDate = birthDate;
 	this.posts = posts;
+}
+public User() {
+	super();
+	// TODO Auto-generated constructor stub
 }
 
 
