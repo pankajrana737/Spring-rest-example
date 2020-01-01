@@ -21,6 +21,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.pankaj.springrestexample.exception.UserNotFoundException;
 import com.pankaj.springrestexample.model.User;
+import com.pankaj.springrestexample.model.User;
 import com.pankaj.springrestexample.service.UserDaoService;
 //import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;

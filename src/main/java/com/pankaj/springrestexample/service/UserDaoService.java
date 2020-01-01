@@ -17,10 +17,8 @@ public class UserDaoService {
  private static List<User> users= new ArrayList<>();
  private static List<Post> post=new ArrayList<>();
  static {
-	 post.add(new Post(new Date(), "CAB", "impleneted Cab"));
-	 post.add(new Post(new Date(), "TESt", "Test 1"));
-	 post.add(new Post(new Date(), "Test 2", "impleneted Cab"));
-	 post.add(new Post(new Date(), "Test", "impleneted testing"));
+	 post.add(new Post(1,new Date(), "CAB", "impleneted Cab"));
+	 post.add(new Post(21,new Date(), "Test", "impleneted Cab"));
  }
  static {
 	 

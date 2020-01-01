@@ -7,6 +7,7 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
@@ -31,13 +32,17 @@ private String name;
 private Date birthDate;
 @ApiModelProperty(notes = "birth day can be in past date")
 
-@Embedded
-private List<Post> posts;
-public List<Post> getPosts() {
-	return posts;
+@OneToMany(mappedBy ="user")
+private List<Post> post;
+
+
+
+public List<Post> getPost() {
+	return post;
 }
-public void setPosts(List<Post> posts) {
-	this.posts = posts;
+
+public void setPost(List<Post> post) {
+	this.post = post;
 }
 public Integer getId() {
 	return id;
@@ -57,13 +62,16 @@ public Date getBirthDate() {
 public void setBirthDate(Date birthDate) {
 	this.birthDate = birthDate;
 }
-public User(Integer id, String name, Date birthDate, List<Post> posts) {
+
+
+public User(Integer id, @Size(min = 2) String name, @Past Date birthDate, List<Post> post) {
 	super();
 	this.id = id;
 	this.name = name;
 	this.birthDate = birthDate;
-	this.posts = posts;
+	this.post = post;
 }
+
 public User() {
 	super();
 	// TODO Auto-generated constructor stub
