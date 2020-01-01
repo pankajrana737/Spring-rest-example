@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.pankaj.springrestexample.exception.UserNotFoundException;
+import com.pankaj.springrestexample.model.Post;
 import com.pankaj.springrestexample.model.User;
 import com.pankaj.springrestexample.model.User;
 import com.pankaj.springrestexample.service.UserDaoService;
@@ -31,10 +32,13 @@ import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 @RestController
 public class UserJPAController {
 	
-	@Autowired
-	UserDaoService userService;
+
 	@Autowired
 	private UserRepository userRepository;
+	
+
+	@Autowired
+	private PostRepository postRepository;
 	// get all user
 	@GetMapping("/jpa/users")
 	public List<User> getAllUser(){
@@ -83,4 +87,34 @@ public class UserJPAController {
 	 public void deleteUserbyID(@PathVariable int id) {
 		  userRepository.deleteById(id);
 	 }
+	 // get user specific post
+	 @GetMapping("/jpa/users/{id}/posts")
+//		public EntityModel<User> getUserById(@PathVariable int id){
+		public List<Post> getUserPostById(@PathVariable int id){
+			Optional<User> findUser = userRepository.findById(id);
+			if(!findUser.isPresent()) {
+				throw new UserNotFoundException("no record found with this id : "+id);
+			}
+			
+			return findUser.get().getPost();
+			
+			
+		}
+		// create post for a specific user
+	 
+	 @PostMapping("/jpa/users/{id}/posts")
+		public ResponseEntity<Object> savePost(@PathVariable int id,@Valid @RequestBody Post post){
+		
+		 Optional<User> findUser = userRepository.findById(id);
+			if(!findUser.isPresent()) {
+				throw new UserNotFoundException("no record found with this id : "+id);
+			}
+			User user= findUser.get();
+			post.setUser(user);
+			postRepository.save(post);
+			URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+					.buildAndExpand(post.getId()).toUri();
+				return ResponseEntity.created(location).build();
+			
+		}
 }
